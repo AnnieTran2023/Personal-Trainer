@@ -74,7 +74,7 @@ function App() {
             <Typography
               variant="h6"
               component="div"
-              sx={{ flexGrow: 1, fontWeight: 500 }}
+              sx={{ flexGrow: 1, fontWeight: 600 }}
             >
               Personal Trainer
             </Typography>
