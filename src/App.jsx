@@ -22,7 +22,7 @@ import Customers from "./components/Customers";
 import Trainings from "./components/Trainings";
 import Statistics from "./components/Statistics";
 
-const drawerWidth = 240; // Width of the drawer
+const drawerWidth = 240;
 
 function App() {
   const [open, setOpen] = useState(false);
@@ -71,7 +71,11 @@ function App() {
             >
               <MenuIcon />
             </IconButton>
-            <Typography variant="h6" component="div" sx={{ flexGrow: 1, fontWeight: 500 }}>
+            <Typography
+              variant="h6"
+              component="div"
+              sx={{ flexGrow: 1, fontWeight: 500 }}
+            >
               Personal Trainer
             </Typography>
           </Toolbar>
@@ -98,10 +102,9 @@ function App() {
             p: 3,
             width: open ? `calc(100% - ${drawerWidth}px)` : "100%",
             transition: "margin 0.3s ease-in-out",
-            ml: open ? `${drawerWidth}px` : 0,
+            ml: 0,
           }}
         >
-          <Toolbar />
           <Routes>
             <Route path="/customer" element={<Customers />} />
             <Route path="/training" element={<Trainings />} />
