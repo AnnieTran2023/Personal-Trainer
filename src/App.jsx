@@ -55,7 +55,7 @@ function App() {
         <AppBar
           position="fixed"
           sx={{
-            backgroundColor: "#f08080",
+            backgroundColor: "#ff8fab",
             width: open ? `calc(100% - ${drawerWidth}px)` : "100%",
             ml: open ? `${drawerWidth}px` : 0,
             transition: "margin 0.3s ease-in-out",
@@ -80,21 +80,23 @@ function App() {
             </Typography>
           </Toolbar>
         </AppBar>
-        <Drawer
-          variant="persistent"
-          anchor="left"
-          open={open}
-          sx={{
-            width: drawerWidth,
-            flexShrink: 0,
-            "& .MuiDrawer-paper": {
+        {open && (
+          <Drawer
+            variant="persistent"
+            anchor="left"
+            open={open}
+            sx={{
               width: drawerWidth,
-              boxSizing: "border-box",
-            },
-          }}
-        >
-          <Box sx={{ overflow: "auto" }}>{DrawerList}</Box>
-        </Drawer>
+              flexShrink: 0,
+              "& .MuiDrawer-paper": {
+                width: drawerWidth,
+                boxSizing: "border-box",
+              },
+            }}
+          >
+            <Box sx={{ overflow: "auto" }}>{DrawerList}</Box>
+          </Drawer>
+        )}
         <Box
           component="main"
           sx={{

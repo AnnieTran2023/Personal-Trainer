@@ -5,6 +5,8 @@ import { fetchCustomers } from "../CustomerAPI";
 import { AgGridReact } from "ag-grid-react";
 import "ag-grid-community/styles/ag-grid.css";
 import "ag-grid-community/styles/ag-theme-material.css";
+import { Box, Typography } from "@mui/material";
+import "../Styles.css";
 
 export default function Customers() {
   const [customers, setCustomers] = useState([]);
@@ -30,8 +32,15 @@ export default function Customers() {
   };
 
   return (
-    <>
-      <div className="ag-theme-material" style={{ height: 500, marginTop:50, marginLeft:0 }}>
+    <Box sx={{ width: "100%", marginTop: 10 }}>
+      <Typography
+        variant="h5"
+        component="h2"
+        sx={{ mb: 2, ml: 1, color: "#6c757d" }}
+      >
+        Customers
+      </Typography>
+      <div className="ag-theme-material custom-ag-grid" style={{ height: 500 }}>
         <AgGridReact
           rowData={customers}
           columnDefs={colDefs}
@@ -40,6 +49,6 @@ export default function Customers() {
           suppressCellFocus={true}
         />
       </div>
-    </>
+    </Box>
   );
 }
