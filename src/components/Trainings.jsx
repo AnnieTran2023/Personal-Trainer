@@ -74,7 +74,7 @@ export default function Trainings() {
       <Typography
         variant="h5"
         component="h2"
-        sx={{ mb: 2, ml: 1, color: "#6c757d" }}
+        sx={{ mb: 2, ml: 1 ,color: "#6c757d" }}
       >
         Trainings
       </Typography>
