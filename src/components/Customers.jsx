@@ -12,6 +12,7 @@ import ModeEditIcon from "@mui/icons-material/ModeEdit";
 import CheckIcon from "@mui/icons-material/Check";
 import CloseIcon from "@mui/icons-material/Close";
 import AddCustomer from "./AddCustomer";
+import AddTraining from "./AddTraining";
 
 export default function Customers() {
   const [customers, setCustomers] = useState([]);
@@ -23,6 +24,7 @@ export default function Customers() {
     {
       cellRenderer: (params) => {
         const isEditing = params.node.id === editRowId;
+        const customerLink = params.data._links.self.href;
         return (
           <div>
             {isEditing ? (
@@ -60,10 +62,14 @@ export default function Customers() {
                 </Button>
               </>
             )}
+            <AddTraining
+              handleFetch={handleFetch}
+              customerLink={customerLink}
+            />
           </div>
         );
       },
-      width: 200,
+      width: 270,
       headerName: "Actions",
     },
     {
