@@ -19,7 +19,9 @@ import SportsGymnasticsIcon from "@mui/icons-material/SportsGymnastics";
 import LeaderboardIcon from "@mui/icons-material/Leaderboard";
 import MenuIcon from "@mui/icons-material/Menu";
 import Customers from "./components/Customers";
+import Calendar from "./components/Calendar";
 import Trainings from "./components/Trainings";
+import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import Statistics from "./components/Statistics";
 
 const drawerWidth = 240;
@@ -36,6 +38,7 @@ function App() {
       {[
         { text: "Customer", icon: <Face2Icon />, path: "/customer" },
         { text: "Training", icon: <SportsGymnasticsIcon />, path: "/training" },
+        { text: "Calendar", icon: <CalendarMonthIcon />, path: "/calendar" },
         { text: "Statistics", icon: <LeaderboardIcon />, path: "/statistics" },
       ].map(({ text, icon, path }) => (
         <ListItem key={text} disablePadding>
