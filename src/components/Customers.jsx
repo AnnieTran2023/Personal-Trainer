@@ -13,6 +13,7 @@ import CheckIcon from "@mui/icons-material/Check";
 import CloseIcon from "@mui/icons-material/Close";
 import AddCustomer from "./AddCustomer";
 import AddTraining from "./AddTraining";
+// import { saveAs } from "file-saver";
 
 export default function Customers() {
   const [customers, setCustomers] = useState([]);
@@ -176,6 +177,24 @@ export default function Customers() {
     }
   };
 
+  // const exportToCSV = (customers) => {
+  //   const filteredCustomers = customers.map(({ id, name, email, phone }) => ({
+  //     id,
+  //     name,
+  //     email,
+  //     phone,
+  //   }));
+  //   const csvContent = [
+  //     ["ID", "Name", "Email", "Phone"], 
+  //     ...filteredCustomers.map((c) => [c.id, c.name, c.email, c.phone]),
+  //   ]
+  //     .map((row) => row.join(","))
+  //     .join("\n");
+
+  //   const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
+  //   saveAs(blob, "customers.csv");
+  // };
+
   return (
     <Box sx={{ width: "100%", marginTop: 10 }}>
       <Box
@@ -194,6 +213,13 @@ export default function Customers() {
         </Typography>
         <AddCustomer handleFetch={handleFetch} />
       </Box>
+      {/* <Button
+        variant="contained"
+        color="primary"
+        onClick={() => exportToCSV(customers)}
+      >
+        Export to CSV
+      </Button> */}
       <div className="ag-theme-material custom-ag-grid" style={{ height: 500 }}>
         <AgGridReact
           rowData={customers}
