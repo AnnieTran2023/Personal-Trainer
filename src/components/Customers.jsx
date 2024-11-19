@@ -13,7 +13,7 @@ import CheckIcon from "@mui/icons-material/Check";
 import CloseIcon from "@mui/icons-material/Close";
 import AddCustomer from "./AddCustomer";
 import AddTraining from "./AddTraining";
-// import { saveAs } from "file-saver";
+import { saveAs } from "file-saver";
 
 export default function Customers() {
   const [customers, setCustomers] = useState([]);
@@ -177,23 +177,52 @@ export default function Customers() {
     }
   };
 
-  // const exportToCSV = (customers) => {
-  //   const filteredCustomers = customers.map(({ id, name, email, phone }) => ({
-  //     id,
-  //     name,
-  //     email,
-  //     phone,
-  //   }));
-  //   const csvContent = [
-  //     ["ID", "Name", "Email", "Phone"], 
-  //     ...filteredCustomers.map((c) => [c.id, c.name, c.email, c.phone]),
-  //   ]
-  //     .map((row) => row.join(","))
-  //     .join("\n");
+  const exportToCSV = (customers) => {
+    const filteredCustomers = customers.map(
+      ({
+        firstname,
+        lastname,
+        streetaddress,
+        postcode,
+        city,
+        email,
+        phone,
+      }) => ({
+        firstname,
+        lastname,
+        streetaddress,
+        postcode,
+        city,
+        email,
+        phone,
+      })
+    );
+    const csvContent = [
+      [
+        "First name",
+        "Last name",
+        "Street address",
+        "Postcode",
+        "City",
+        "Email",
+        "Phone",
+      ],
+      ...filteredCustomers.map((c) => [
+        c.firstname,
+        c.lastname,
+        c.streetaddress,
+        c.postcode,
+        c.city,
+        c.email,
+        c.phone,
+      ]),
+    ]
+      .map((row) => row.join(","))
+      .join("\n");
 
-  //   const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
-  //   saveAs(blob, "customers.csv");
-  // };
+    const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
+    saveAs(blob, "customers.csv");
+  };
 
   return (
     <Box sx={{ width: "100%", marginTop: 10 }}>
@@ -211,15 +240,27 @@ export default function Customers() {
         >
           Customers
         </Typography>
-        <AddCustomer handleFetch={handleFetch} />
+        <Box>
+          <AddCustomer handleFetch={handleFetch} />
+          <Button
+            sx={{
+              color: "whitesmoke",
+              backgroundColor: "#ff8fab",
+              padding: 0.8,
+              "&:hover": {
+                backgroundColor: "whitesmoke",
+                color: "#ff8fab",
+              },
+            }}
+            variant="contained"
+            size="small"
+            onClick={() => exportToCSV(customers)}
+          >
+            Export to CSV
+          </Button>
+        </Box>
       </Box>
-      {/* <Button
-        variant="contained"
-        color="primary"
-        onClick={() => exportToCSV(customers)}
-      >
-        Export to CSV
-      </Button> */}
+
       <div className="ag-theme-material custom-ag-grid" style={{ height: 500 }}>
         <AgGridReact
           rowData={customers}
