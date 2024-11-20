@@ -14,7 +14,7 @@ export default function Calendar() {
   useEffect(() => {
     fetchTrainings().then((trainings) => {
       const calendarEvents = trainings.map((training) => ({
-        title: `${training.activity} - ${training.customer.name}`,
+        title: `${training.activity} - ${training.customer.firstname} ${training.customer.lastname}`,
         start: new Date(training.date),
         end: new Date(
           new Date(training.date).getTime() + training.duration * 60000
