@@ -17,6 +17,16 @@ export function deleteCustomer(url) {
   });
 }
 
+
+export function getCustomerById(url) {
+  return fetch(url).then((response) => {
+    if (!response.ok)
+      throw new Error("Error in delete: " + response.statusText);
+
+    return response.json();
+  });
+}
+
 export function saveCustomer(newCustomer) {
   return fetch(import.meta.env.VITE_CUSTOMER_API_URL, {
     method: "POST",

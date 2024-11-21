@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import Dialog from "@mui/material/Dialog";
@@ -6,12 +6,13 @@ import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogTitle from "@mui/material/DialogTitle";
 import { saveTraining } from "../TrainingAPI";
+import { getCustomerById } from "../CustomerAPI";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import dayjs from "dayjs";
 
-export default function AddCustomer({ handleFetch, customerLink }) {
+export default function AddTraining({ handleFetch, customerLink }) {
   const [open, setOpen] = useState(false);
   const [training, setTraining] = useState({
     date: "",
@@ -19,6 +20,17 @@ export default function AddCustomer({ handleFetch, customerLink }) {
     duration: "",
     customer: customerLink,
   });
+  const [customerName, setCustomerName] = useState("");
+
+  useEffect(() => {
+    if (customerLink) {
+      getCustomerById(customerLink)
+        .then((customer) =>
+          setCustomerName(`${customer.firstname} ${customer.lastname}`)
+        )
+        .catch((err) => console.error("Error fetching customer name:", err));
+    }
+  }, [customerLink]);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -96,7 +108,7 @@ export default function AddCustomer({ handleFetch, customerLink }) {
             margin="dense"
             name="customer"
             label="Customer"
-            value={training.customer}
+            value={customerName}
             onChange={handleChange}
             fullWidth
             variant="standard"
