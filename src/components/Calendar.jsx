@@ -3,7 +3,6 @@ import moment from "moment";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import { useEffect, useState } from "react";
 import { fetchTrainings } from "../TrainingAPI";
-import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 
 const localizer = momentLocalizer(moment);
@@ -21,6 +20,7 @@ export default function Calendar() {
         ),
       }));
       setEvents(calendarEvents);
+      console.log(trainings)
     });
   }, []);
 
