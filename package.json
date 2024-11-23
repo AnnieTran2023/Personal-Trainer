@@ -2,6 +2,7 @@
   "name": "personal-trainer",
   "private": true,
   "version": "0.0.0",
+  "homepage": "https://AnnieTran2023.github.io/Personal-Trainer/",
   "type": "module",
   "scripts": {
     "dev": "vite",

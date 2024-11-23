@@ -13,7 +13,7 @@ import {
   CssBaseline,
 } from "@mui/material";
 import { useState } from "react";
-import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
+import { HashRouter as Router, Route, Routes, Link } from "react-router-dom";
 import Face2Icon from "@mui/icons-material/Face2";
 import SportsGymnasticsIcon from "@mui/icons-material/SportsGymnastics";
 import LeaderboardIcon from "@mui/icons-material/Leaderboard";
